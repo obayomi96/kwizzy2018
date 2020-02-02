@@ -1,0 +1,96 @@
+$questionColor: black;
+$answerBackground: silver;
+$font: sans-serif;
+$mainColor: ghostwhite;
+$h1Color: black;
+$h1backgroundColor: gray;
+
+body{
+  font-size: 20px;
+  font-family: $font;
+  color: #333;
+  background-color: $mainColor;
+  text-align: center;
+  font-weight: 300;
+}
+h1 {
+  text-transform: uppercase;
+  font-family: 'Monoton', cursive;;
+  text-align: center;
+  margin: 0px;
+  padding: 10px;
+  color: $h1Color;
+  background-color: $h1backgroundColor;
+  word-spacing: 0.35em;
+  width: 100%;
+}
+
+.question{
+  font-weight: 25px;
+  margin-bottom: 10px;
+  color: $questionColor;
+}
+.answers {
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 0px;
+  text-align: left;
+  display: block;
+  font-family: 'Kaushan Script', cursive;
+}
+.answers label{
+  display: block;
+  margin-bottom: 15px;
+}
+
+.slide {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.active-slide{
+  opacity: 1;
+  z-index: 2;
+}
+.quiz-container {
+  position: relative;
+  height: 200px;
+  margin-top: 40px;
+}
+button{
+    font-family: $font;
+    font-size: 10px;
+    background-color: #279;
+    color: #fff;
+    border: 0px;
+    border-radius: 5px;
+    padding: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: transform .2s;
+    width: 80px;
+    
+}
+button:hover{
+    background-color: #38a;
+   -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+}
+#scores {
+  font-family: 'Kaushan Script', cursive;
+}
+.fixed-bottom {
+  text-align: center;
+  background-color: gray;
+  position: fixed;
+  color: black;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-left: none;
+}
