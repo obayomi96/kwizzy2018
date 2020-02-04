@@ -1,15 +1,8 @@
-$questionColor: black;
-$answerBackground: silver;
-$font: sans-serif;
-$mainColor: ghostwhite;
-$h1Color: black;
-$h1backgroundColor: gray;
-
 body{
   font-size: 20px;
-  font-family: $font;
+  font-family: sans-serif;
   color: #333;
-  background-color: $mainColor;
+  background-color: ghostwhite;
   text-align: center;
   font-weight: 300;
 }
@@ -19,16 +12,21 @@ h1 {
   text-align: center;
   margin: 0px;
   padding: 10px;
-  color: $h1Color;
-  background-color: $h1backgroundColor;
+  color: black;
+  background-color: gray;
   word-spacing: 0.35em;
   width: 100%;
+}
+
+#quiz {
+   border-top-width: 100px;
+  margin-top: 100px;
 }
 
 .question{
   font-weight: 25px;
   margin-bottom: 10px;
-  color: $questionColor;
+  color: black;
 }
 .answers {
   margin-left: 30px;
@@ -62,7 +60,7 @@ h1 {
   margin-top: 40px;
 }
 button{
-    font-family: $font;
+    font-family: sans-serif;
     font-size: 10px;
     background-color: #279;
     color: #fff;
@@ -77,14 +75,48 @@ button{
 }
 button:hover{
     background-color: #38a;
-   -ms-transform: scale(1.5);
-    -webkit-transform: scale(1.5);
-    transform: scale(1.5);
+   -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
 }
-#scores {
-  font-family: 'Kaushan Script', cursive;
+.scores {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%);
+  background: #fff;
+  width: 500px;
+  height: 500px;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: 0 0 20px rgba(0,0,0,.2);
+  z-index: 2;
 }
-.fixed-bottom {
+
+.modal__header {
+  color:white;
+  background: #333;
+  line-height: 50px;
+  text-align: center;
+  position: relative;
+  height:50px;
+  box-sizing:border-box;
+  }
+.modal__header a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+    display: block;
+    padding: 0 20px;
+    font-size:16px;
+    background: #555;
+    height: 100%;  
+  }
+.footer {
   text-align: center;
   background-color: gray;
   position: fixed;
@@ -92,5 +124,5 @@ button:hover{
   position: fixed;
   bottom: 0;
   width: 100%;
-  margin-left: none;
+  margin-left: 0px;
 }

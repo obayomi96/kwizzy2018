@@ -11,7 +11,7 @@ const myQuestions = [
       a: "Ruby on Rails",
       b: "React.JS",
       c: "MongoDB",
-      d: "Mongouse"
+      d: "Mongoose"
     },
     correctAnswer: "b"
   },
@@ -19,9 +19,9 @@ const myQuestions = [
     question: "Which of these is not a Programming language",
     answers: {
       a: "Python",
-      b: "SQL",
+      b: "Sass",
       c: "PHP",
-      d: "C#"
+      d: "C++"
     },
     correctAnswer: "b"
   },
@@ -107,7 +107,7 @@ const myQuestions = [
   }
 ];
 // create functions to build quiz
-function buildQuiz() {
+const buildQuiz = () => {
   //store the html output
   const output = [];
   
@@ -140,50 +140,45 @@ function buildQuiz() {
 quizContainer.innerHTML = output.join("");
 }
 
-
 // function to display quiz
-function showResults() {
+const showResults = () => {
   //get answer containers from our quiz
   const answerContainers = quizContainer.querySelectorAll(".answers");
   let numCorrect = 0;
   //for each question 
   myQuestions.forEach( (currentQuestion, questionNumber) => {
     // finding selected answers
-     /* First, we’re making sure we’re looking inside the answer container for the current question.*/
-    const answerContainer = answerContainers[questionNumber];
+    /* First, we’re making sure we’re looking inside the answer container for the current question.*/
+  const answerContainer = answerContainers[questionNumber];
     /*we’re defining a CSS selector that will let us find which radio button is checked.*/
-    const selector = `input[name=question${questionNumber}]:checked`;
+  const selector = `input[name=question${questionNumber}]:checked`;
     /* we’re using JavaScript’s querySelector to search for our CSS selector in the previously defined answerContainer. In essence, this means that we’ll find which answer’s radio button is checked.*/
   //we can get the value of that answer by using .value
-    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+  const userAnswer = (answerContainer.querySelector(selector) || {}).value;
     //if answer is correct
-    if(userAnswer === currentQuestion.correctAnswer){
+  if(userAnswer === currentQuestion.correctAnswer){
       numCorrect++;
       // color the answers blue
-      answerContainers[questionNumber].style.color = "green";
+  answerContainers[questionNumber].style.color = "green";
       // if answer is wrong
 } else {
   answerContainers[questionNumber].style.color = "red";
 }
   });
   // display number of correct answers out of total
-  resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
-  
-  if(numCorrect === myQuestions.length) {
-    scoreMessage.innerHTML = "Highest Score... YOU GOT THE BEST RESULT!";
-    scoreMessage.style.color = "blue";
+  resultsContainer.innerHTML = `You passed ${numCorrect} out of ${myQuestions.length}`;
+  // display score message regarding user result
+if(numCorrect === myQuestions.length) {
+  scoreMessage.innerHTML = "Highest Score... YOU GOT THE BEST RESULT!";
     
-   } else if(numCorrect === myQuestions.length -1) {
-      scoreMessage.innerHTML = "Fair enough, but you can do better... TRY AGAIN!";
-    scoreMessage.style.color = "orange";
-     
-} else if( numCorrect === myQuestions.length / 2) {
+} else if(numCorrect === myQuestions.length -1) {
+  scoreMessage.innerHTML = "Fair enough, but you can do better... TRY AGAIN!";
+       
+} else if(numCorrect === myQuestions.length / 2) {
   scoreMessage.innerHTML = "Average Score, Study more and try again... YOU CAN DO BETTER!";
-  scoreMessage.style.color = "violet";
   
 } else if (numCorrect < myQuestions.length / 2) {
   scoreMessage.innerHTML = "Bad Score! Study more and try again... YOU CAN DO IT!";
-  scoreMessage.style.color = "red";
 } 
 }
 
@@ -193,7 +188,7 @@ function showResults() {
   
   /*function to show slide when user selects an answer */
   
-function showSlide(n) {
+const showSlide = (n) => {
   slides[currentSlide].classList.remove("active-slide");
   slides[n].classList.add("active-slide");
   currentSlide = n;
@@ -212,10 +207,10 @@ function showSlide(n) {
 }
   
  /* function to make navigation buttons work to show provious and next slides */
-  function showNextSlide() {
+  const showNextSlide = () => {
     showSlide(currentSlide + 1);
   }
-  function showPreviousSlide() {
+  const showPreviousSlide = () => {
     showSlide(currentSlide - 1);
   }
   const quizContainer = document.getElementById("quiz");
@@ -235,5 +230,32 @@ showSlide(0);
   submitButton.addEventListener('click', showResults);
   previousButton.addEventListener("click", showPreviousSlide);
   nextButton.addEventListener("click", showNextSlide);
-  // call buildQuiz to execute immediately
-})();
+
+  const modal = document.getElementById("scores");
+  const result = document.getElementById("results");
+ const message = document.getElementById("message");
+  const closeOverlay = document.getElementById("close");
+  const restart = document.getElementById("restart");
+  // open modal
+  submit.addEventListener('click', () => {
+    modal.style.display = "block";
+
+  // close modal when user clicks the close button
+  closeOverlay.addEventListener('click', () => {
+    modal.style.display = "none";
+    window.location = "index.html";
+  });
+  
+  // close modal when user clicks outside of the modal
+  window.addEventListener('mouseup', (event) => {
+    if(event.target != modal && event.target.parentNode != modal) {
+      modal.style.display = "none";
+      window.location = "index.html";
+    }
+  });
+});
+
+// Restart quiz onclick of restart button
+restart.addEventListener('click', () => window.location = 'index.html');
+    
+})(); // call buildQuiz to execute immediately
